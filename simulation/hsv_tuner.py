@@ -67,7 +67,7 @@ def main():
         print(f"ERROR loading calibration file '{CALIBRATION_FILE_PATH}': {e}")
         print("       Proceeding without undistortion.")
 
-    cap = cv2.VideoCapture(CAMERA_INDEX)
+    cap = cv2.VideoCapture(CAMERA_INDEX, cv2.CAP_DSHOW)
     if not cap.isOpened():
         print(f"ERROR: Cannot open camera source: {CAMERA_INDEX}")
         return

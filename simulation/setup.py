@@ -59,7 +59,7 @@ PERSPECTIVE_MATRIX_FILE_NPZ = "perspective_transform_matrices.npz"
 CALIBRATION_FILE_NAME_TEMPLATE = "camera_calibration_{width}x{height}.npz"
 
 DETECTOR_KWARGS = {
-    'families': APRILTAG_FAMILY, 'nthreads': 1, 'quad_decimate': 1.0,
+    'families': APRILTAG_FAMILY, 'nthreads': 1, 'quad_decimate': 2.0,
     'quad_sigma': 0.0, 'refine_edges': True, 'decode_sharpening': 0.25, 'debug': False
 }
 
@@ -238,7 +238,7 @@ def calculate_and_save_all_perspective_transforms(cap, camera_matrix, dist_coeff
 def main_setup_flow():
     if not os.path.exists(CALIBRATION_DATA_FOLDER): os.makedirs(CALIBRATION_DATA_FOLDER)
 
-    cap = cv2.VideoCapture(CAMERA_INDEX)
+    cap = cv2.VideoCapture(CAMERA_INDEX, cv2.CAP_DSHOW)
     if not cap.isOpened(): print(f"FATAL: Cannot open camera {CAMERA_INDEX}"); return
 
     print(f"Attempting to set initial camera resolution to: {DESIRED_WIDTH}x{DESIRED_HEIGHT}")

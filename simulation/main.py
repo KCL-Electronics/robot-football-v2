@@ -139,11 +139,11 @@ ROBOT_A1_TAG_ID = 6
 ROBOT_A2_TAG_ID = 7
 ALL_ROBOT_TAG_IDS = [ROBOT_B1_TAG_ID, ROBOT_B2_TAG_ID, ROBOT_A1_TAG_ID, ROBOT_A2_TAG_ID] 
 
-LOWER_YELLOW_HSV = np.array([20, 100, 100])
-UPPER_YELLOW_HSV = np.array([35, 255, 255])
-BALL_MORPH_KERNEL_SIZE = 5
-BALL_ERODE_ITERATIONS = 1
-BALL_DILATE_ITERATIONS = 1
+LOWER_YELLOW_HSV = np.array([21, 108, 90])
+UPPER_YELLOW_HSV = np.array([121, 255, 255])
+BALL_MORPH_KERNEL_SIZE = 3
+BALL_ERODE_ITERATIONS = 0
+BALL_DILATE_ITERATIONS = 0
 MIN_BALL_CONTOUR_AREA_PX = 50
 MIN_BALL_CIRCULARITY = 0.7
 
@@ -947,7 +947,7 @@ class Game:
         except Exception as e:
             raise RuntimeError(f"FATAL ERROR: Could not initialize AprilTag Detector: {e}")
 
-        camera_capture_at = cv2.VideoCapture(CAMERA_INDEX)
+        camera_capture_at = cv2.VideoCapture(CAMERA_INDEX, cv2.CAP_DSHOW)
         if not camera_capture_at.isOpened():
             raise RuntimeError(f"FATAL ERROR: Cannot open camera {CAMERA_INDEX}")
         camera_capture_at.set(cv2.CAP_PROP_FRAME_WIDTH,APRILTAG_CAMERA_RESOLUTION_W)
